@@ -4,6 +4,9 @@ import webbrowser
 import time
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
+from pytz import timezone
+import pytz
 
 
 choice = '''
@@ -51,7 +54,15 @@ elif ch==3:
 
         
         print("***********END***************")   
-        time.sleep(2) 
+        time.sleep(2)
+
+elif ch==4:
+    tzone = timezone('Asia/Kolkata')
+    fmt = '%Y-%m-%d %H:%M:%S %Z%z'
+    loc_dt = tzone.localize(datetime.now())
+    print(loc_dt.strftime(fmt)) 
+
+
 
 
 
