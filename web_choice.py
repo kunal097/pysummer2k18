@@ -39,7 +39,19 @@ elif ch==3:
     for i in data:
         url = 'https://www.google.co.in/search?q={}'.format(i)
         html_source = requests.get(url).content
-        soup = BeautifulSoup(html_source)
+        soup = BeautifulSoup(html_source , "lxml")
+       
+        test =True
+        for link in soup.find_all('a'):
+            if test:
+                print("Url related to {}".format(i))
+                print("********************************")
+                test = False
+            print(link.get('href'))
+
+        
+        print("***********END***************")   
+        time.sleep(2) 
 
 
 
