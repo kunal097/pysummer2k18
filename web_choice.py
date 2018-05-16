@@ -113,3 +113,7 @@ elif ch==7:                                                         # Search inf
     for title , detail in info.items():
         print('{} : {}'.format(title,detail))
 
+
+else:
+    print("Wrong choice !!!")        
+
