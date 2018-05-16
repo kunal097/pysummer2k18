@@ -1,13 +1,14 @@
 #!/usr/bin/python3                
 
 
-import os
+import os                                            # to find platform information
 import webbrowser                                    # Browser related task
 import time                                          # For sleep function
 import requests                                      # To get page source of an url
 from bs4 import BeautifulSoup                        # Scrap particular information from the page source
 from datetime import datetime, timedelta             # Date , Time related stuff
 from pytz import timezone                            # To get timezone of a particular
+import nmap                                      # For scanning the network
 
 
  
@@ -26,7 +27,7 @@ Enter choice >>
 '''
 
 
-ch = int(input(choice))    # Take user input
+ch = int(input(choice))                                                         # Take user input
 
 
 if ch==1:                                                                       # Search each input keyword on the web
@@ -60,6 +61,8 @@ elif ch==3:                                                                     
         print("***********END***************")   
         time.sleep(2)
 
+
+
 elif ch==4:                                                                     # Show current date and time with timezone
     tzone = timezone('Asia/Kolkata')
     fmt = '%Y-%m-%d %H:%M:%S %Z%z'
@@ -67,7 +70,7 @@ elif ch==4:                                                                     
     print(loc_dt.strftime(fmt)) 
 
 
-elif ch==5:
+elif ch==5:                                                                     # Search each input keyword on default platform browser
     kernel = os.sys.platform
     data = input('Enter data : ').strip().split()
 
@@ -89,6 +92,12 @@ elif ch==5:
 
 
 
+elif ch==6:
+    ip_addr = input("Enter Network IP : ")                                  # Take network ip
 
+    nmap_obj = nmap.PortScanner()                                   # Create nmap object
+    nmap_obj.scan(hosts=ip_addr , arguments='-n -sP')               # -n : Never do DNS resolution  and -sP : for ping scan
+    for host in nmap_obj.all_hosts():                               
+        print(host)                                                 # Print available host on the network
 
 
