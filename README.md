@@ -3,7 +3,7 @@ Productive work during summer training/internship.
 
 
 
-#Task :
+#Task performed by web_choice.py :
 1. to search each keyword on web input given by user
 2. to search images of each keyword related to the user input
 3. find url on the first page of each keyword of the user input
