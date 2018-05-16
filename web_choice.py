@@ -8,7 +8,9 @@ import requests                                      # To get page source of an 
 from bs4 import BeautifulSoup                        # Scrap particular information from the page source
 from datetime import datetime, timedelta             # Date , Time related stuff
 from pytz import timezone                            # To get timezone of a particular
-import nmap                                      # For scanning the network
+import nmap                                          # For scanning the network
+from ipwhois import IPWhois                          # For domain lookup purpose
+import socket                                        # To get host ip using domain name 
 
 
  
@@ -92,12 +94,22 @@ elif ch==5:                                                                     
 
 
 
-elif ch==6:
-    ip_addr = input("Enter Network IP : ")                                  # Take network ip
+elif ch==6:                                                         # Search all host on the same network
+    ip_addr = input("Enter Network IP : ")                          # Take network ip
 
     nmap_obj = nmap.PortScanner()                                   # Create nmap object
     nmap_obj.scan(hosts=ip_addr , arguments='-n -sP')               # -n : Never do DNS resolution  and -sP : for ping scan
     for host in nmap_obj.all_hosts():                               
         print(host)                                                 # Print available host on the network
 
+
+
+elif ch==7:                                                         # Search information of the given domain (if avaliable)
+    domain = input("Enter domain name : ")
+    obj = IPWhois(socket.gethostbyname(domain))
+    res = obj.lookup_whois()
+    info = res['nets'][0]
+
+    for title , detail in info.items():
+        print('{} : {}'.format(title,detail))
 
