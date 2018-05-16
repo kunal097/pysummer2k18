@@ -1,15 +1,19 @@
 #!/usr/bin/python3                
 
-import webbrowser
-import time
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
-from pytz import timezone
-import pytz
 
 
-choice = '''
+import webbrowser                                    # Browser related task
+import time                                          # For sleep function
+import requests                                      # To get page source of an url
+from bs4 import BeautifulSoup                        # Scrap particular information from the page source
+from datetime import datetime, timedelta             # Date , Time related stuff
+from pytz import timezone                            # To get timezone of a particular
+
+
+ 
+## These are the task to be performed 
+
+choice = '''                                                              
 1. to search data on web
 2. to search images related to data
 3. find url on the first page of the given data
@@ -22,22 +26,22 @@ Enter choice >>
 '''
 
 
-ch = int(input(choice))
+ch = int(input(choice))    # Take user input
 
 
-if ch==1:
+if ch==1:                                                                       # Search each input keyword on the web
     data = input("Enter data : ").split()
     for i in data:
         webbrowser.open_new_tab('https://www.google.co.in/search?q={}'.format(i))
         time.sleep(1)
 
-elif ch==2:
+elif ch==2:                                                                     # Search images related to each input keyword
     data = input("Enter data : ").split()
     for i in data:
         webbrowser.open_new_tab('https://www.google.co.in/search?q={}&source=lnms&tbm=isch'.format(i))
         time.sleep(1)
 
-elif ch==3:
+elif ch==3:                                                                     # Fetch url of the each input keyword from the homepage
     data = input("Enter data : ").split()
     for i in data:
         url = 'https://www.google.co.in/search?q={}'.format(i)
@@ -56,7 +60,7 @@ elif ch==3:
         print("***********END***************")   
         time.sleep(2)
 
-elif ch==4:
+elif ch==4:                                                                     # Show current date and time with timezone
     tzone = timezone('Asia/Kolkata')
     fmt = '%Y-%m-%d %H:%M:%S %Z%z'
     loc_dt = tzone.localize(datetime.now())
