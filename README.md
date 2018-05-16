@@ -1,6 +1,8 @@
 # pysummer2k18
 Productive work during summer training/internship.
 
+
+
 #Task :
 1. to search each keyword on web input given by user
 2. to search images of each keyword related to the user input
